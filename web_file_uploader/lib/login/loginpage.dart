@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:web_file_uploader/uploader/uploaderpage.dart';
 
 import '../../main.dart';
 import 'loginresponse.dart';
@@ -17,7 +18,7 @@ class LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<LoginDataResponse> login(BuildContext context, L10n l10n) async{
+  /*Future<LoginDataResponse> login(BuildContext context, L10n l10n) async{
     try{
       final response = await http.post(
         Uri.parse('http://192.168.0.171:8080/api/auth/signin'),
@@ -48,12 +49,12 @@ class LoginPageState extends State<LoginPage> {
       _showToast(context, l10n.connectionErrorMessage, l10n.okButton);
       throw Exception('Failed to connect.');
     }
-  }
+  }*/
 
   void _navigateToUploaderScreen() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => const UploaderPage(),
       ),
     );
   }
@@ -98,7 +99,8 @@ class LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text(l10n.loginButton),
               onPressed: (){
-                login(context, l10n);
+                //login(context, l10n);
+                _navigateToUploaderScreen();
               },
             ),
           ],

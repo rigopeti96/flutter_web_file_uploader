@@ -1,44 +1,19 @@
 {
   "@@locale": "en",
-  "homeTitle": "TraWell - Map",
-  "@homeTitle": {
-    "description": "Main page (map) title.",
-    "context": "MainPage"
-  },
   "loginTitle": "TraWell File uploader - Login",
   "@loginTitle": {
     "description": "Login page title.",
     "context": "LoginPage"
   },
+  "filePickerTitle": "TraWell File uploader - File picker",
+  "@filePickerTitle": {
+    "description": "File picker page title.",
+    "context": "UploaderPage"
+  },
   "loginButton": "Login",
   "@loginButton": {
     "description": "Login page button title.",
     "context": "LoginPage"
-  },
-  "dismissButton": "DISMISS",
-  "@dismissButton": {
-    "description": "Toast message dismiss button text.",
-    "context": "Toast"
-  },
-  "signup": "TraWell - Create user",
-  "@signupTitle": {
-    "description": "Create user page title.",
-    "context": "CreateUserPage"
-  },
-  "reportListTitle": "TraWell - Reports",
-  "@reportListTitle": {
-    "description": "Create user page title.",
-    "context": "CreateUserPage"
-  },
-  "createAlertTitle": "TraWell - Create alert",
-  "@createAlertTitle": {
-    "description": "Create alert page title.",
-    "context": "CreateAlertPage"
-  },
-  "fullNameTag": "Full name",
-  "@fullNameTag": {
-    "description": "Create user page full name edit text hint.",
-    "context": "CreateUserPage"
   },
   "userNameTag": "User name",
   "@userNameTag": {
@@ -50,114 +25,14 @@
     "description": "Create user page password edit text hint.",
     "context": "CreateUserPage"
   },
-  "emailTag": "E-mail address",
-  "@emailTag": {
-    "description": "Create user page email edit text hint.",
-    "context": "CreateUserPage"
-  },
-  "yourPosition": "Your position",
-  "@yourPosition": {
-    "description": "Label of position",
-    "context": "CreateAlertPage"
-  },
-  "selectError": "Error Type",
-  "@selectError": {
-    "description": "Label of dropdown list",
-    "context": "CreateAlertPage"
-  },
-  "actualPosition": "Actual position",
-  "@actualPosition": {
-    "description": "Label of actual position marker",
-    "context": "MainPage"
-  },
-  "stationsNear": "Stations near you...",
-  "@stationsNear": {
-    "description": "Label of station dropdown list",
-    "context": "CreateAlertPage"
-  },
-  "createUser": "Create User",
-  "@createUser": {
-    "description": "Create user page button text.",
-    "context": "CreateUserPage"
-  },
   "createUserBack": "Back",
   "@createUserBack": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "createAlert": "Create alert",
-  "@createAlert": {
-    "description": "Button text value",
-    "context": "CreateAlertPage"
-  },
-  "generalError": "General error",
-  "@generalError": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "blackout": "Blackout",
-  "@blackout": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "accidentCar": "Accident (car)",
-  "@accidentCar": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "accidentPT": "Accident (public transport)",
-  "@accidentPT": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "inspector": "Inspector",
-  "@inspector": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "trafficJam": "Traffic Jam",
-  "@trafficJam": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "weather": "Interruption due to weather",
-  "@weather": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "unknown": "Unknown",
-  "@unknown": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "delay": "Delay",
-  "@delay": {
     "description": "Dropdown list value",
     "context": "CreateAlertPage"
   },
   "connectionErrorMessage": "Connection error, please check logs!",
   "@connectionErrorMessage": {
     "description": "Connection error message"
-  },
-  "assemblyErr": "Assembly error",
-  "@assemblyErr": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "passengerSick": "Passenger sickness",
-  "@passengerSick": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "emptyValue": "Empty",
-  "@emptyValue": {
-    "description": "Dropdown list value",
-    "context": "CreateAlertPage"
-  },
-  "reportCreateSuccessMessage": "Report creation was successful",
-  "@reportCreateSuccessMessage": {
-    "description": "Toast message to show the success of report creation",
-    "context": "CreateAlertPage"
   },
   "loginSuccessMessage": "Login was successful",
   "@loginSuccessMessage": {
@@ -169,19 +44,39 @@
     "description": "Toast message OK button",
     "context": "ToastMessage"
   },
-  "jwtTokenEmptyMessage": "Log in first to access this function",
-  "@jwtTokenEmptyMessage": {
-    "description": "Error message is JWT Token is not set",
-    "context": "LoginPage"
-  },
   "generalErrorMessage": "Error!",
   "@generalErrorMessage": {
     "description": "Alert dialog title",
     "context": "AlertDialog"
   },
-  "reportUpdateSuccessMessage": "Report update was successful!",
-  "@reportUpdateSuccessMessage": {
-    "description": "Toast message to show the success of report update",
-    "context": "ReportPage"
+  "pickFileLabel": "Pick File",
+  "@pickFileLabel": {
+    "description": "File picker button text",
+    "context": "FileUploader"
+  },
+  "uploadFileLabel": "Upload File",
+  "@uploadFileLabel": {
+    "description": "File uploader button text",
+    "context": "FileUploader"
+  },
+  "fileNotFound": "No File found yet",
+  "@fileNotFound": {
+    "description": "File not found error label",
+    "context": "FileUploader"
+  },
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "File name label",
+    "context": "FileUploader"
+  },
+  "sizeLabel": "Size",
+  "@sizeLabel": {
+    "description": "File Size label",
+    "context": "FileUploader"
+  },
+  "extensionLabel": "Extension",
+  "@extensionLabel": {
+    "description": "File Extension label",
+    "context": "FileUploader"
   }
 }
