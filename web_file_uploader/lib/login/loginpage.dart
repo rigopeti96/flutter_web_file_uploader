@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:homework/createuser/createuser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../main.dart';
-import 'logindataresponse.dart';
+import 'loginresponse.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -44,7 +43,14 @@ class LoginPage extends StatelessWidget {
       _showToast(context, l10n.connectionErrorMessage, l10n.okButton);
       throw Exception('Failed to connect.');
     }
+  }
 
+  void _navigateToLoginScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    );
   }
 
   void _showToast(BuildContext context, String message, String okButton) {
@@ -96,12 +102,6 @@ class LoginPage extends StatelessWidget {
                 onPressed: (){
                   login(context, l10n);
                   //Navigator.of(context).pop();
-                },
-              ),
-              ElevatedButton(
-                child: Text(l10n.createUserBack),
-                onPressed: (){
-                  Navigator.of(context).pop();
                 },
               ),
             ],
