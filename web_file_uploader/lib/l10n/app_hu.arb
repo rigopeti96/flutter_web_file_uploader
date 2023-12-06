@@ -17,5 +17,6 @@
   "extensionLabel": "Kiterjesztés",
   "uploadSuccessful": "Sikeres fájlfeltöltés!",
   "uploadFailed": "Fájl feltöltése sikertelen!",
-  "uploadResult": "Fájl feltöltés befejeződött"
+  "uploadResult": "Fájl feltöltés befejeződött",
+  "logout": "Kijelentkezés"
 }

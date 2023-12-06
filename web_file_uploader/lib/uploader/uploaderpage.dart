@@ -93,6 +93,11 @@ class UploaderPageState extends State<UploaderPage> {
     }
   }
 
+  void _logout(){
+    jwtToken = "";
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final L10n l10n = L10n.of(context)!;
@@ -159,6 +164,20 @@ class UploaderPageState extends State<UploaderPage> {
                         icon: const Icon(Icons.upload_file),
                         label: Text(
                           l10n.uploadFileLabel,
+                          style: const TextStyle(fontSize: 25),
+                        )
+                    ),
+                    ElevatedButton.icon(
+                        onPressed: _logout,
+                        style: const ButtonStyle(
+                            backgroundColor:
+                            MaterialStatePropertyAll(Color.fromARGB
+                              (255, 61, 186, 228)
+                            )
+                        ),
+                        icon: const Icon(Icons.logout),
+                        label: Text(
+                          l10n.logout,
                           style: const TextStyle(fontSize: 25),
                         )
                     ),

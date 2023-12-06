@@ -93,5 +93,10 @@
   "@uploadResult": {
     "description": "Alert dialog title",
     "context": "FileUploader"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button label",
+    "context": "FileUploader"
   }
 }
