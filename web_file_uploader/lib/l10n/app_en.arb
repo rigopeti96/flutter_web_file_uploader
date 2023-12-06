@@ -78,5 +78,20 @@
   "@extensionLabel": {
     "description": "File Extension label",
     "context": "FileUploader"
+  },
+  "uploadSuccessful": "File upload was successful",
+  "@uploadSuccessful": {
+    "description": "Successful upload label",
+    "context": "FileUploader"
+  },
+  "uploadFailed": "File upload failed",
+  "@uploadFailed": {
+    "description": "Unsuccessful upload label",
+    "context": "FileUploader"
+  },
+  "uploadResult": "File upload has ended",
+  "@uploadResult": {
+    "description": "Alert dialog title",
+    "context": "FileUploader"
   }
 }

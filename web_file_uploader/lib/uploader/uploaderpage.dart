@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -20,7 +23,62 @@ class UploaderPageState extends State<UploaderPage> {
   PlatformFile? file;
   String? size;
 
-  Future<void> picksinglefile() async {
+  Future<void> _uploadArchive() async {
+    final completer = Completer<List<int>>();
+    final reader = FileReader();
+
+    reader.onLoad.listen((event) {
+      final bytesData = reader.result as List<int>;
+      completer.complete(bytesData);
+    });
+
+    final bytesData = await completer.future;
+    final request = http.MultipartRequest("POST", Uri.parse('http://192.168.0.171:8080/api/gtfshandler/uploadArchive'));
+    final headers = {
+      "Authorization": "Bearer $jwtToken",
+      "Content-Type": "multipart/form-data",
+      "Content-Length": bytesData.length.toString(),
+      "Accept": "*/*",
+    };
+    request.headers.addAll(headers);
+    request.files.add(http.MultipartFile.fromBytes(
+      'files',
+      bytesData,
+      filename: file!.name,
+    ));
+    final response = await request.send();
+    _showMyDialog(response.statusCode == 200);
+  }
+
+  Future<void> _showMyDialog(bool isSuccessful) async {
+    final L10n l10n = L10n.of(context)!;
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(l10n.generalErrorMessage),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(isSuccessful ? l10n.uploadSuccessful : l10n.uploadFailed),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(l10n.okButton),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> pickSingleFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       file = result.files.first;
@@ -77,7 +135,7 @@ class UploaderPageState extends State<UploaderPage> {
                       height: 170,
                     ),
                     ElevatedButton.icon(
-                        onPressed: picksinglefile,
+                        onPressed: pickSingleFile,
                         style: const ButtonStyle(
                             backgroundColor:
                             MaterialStatePropertyAll(Color.fromARGB
@@ -91,7 +149,7 @@ class UploaderPageState extends State<UploaderPage> {
                         )
                     ),
                     ElevatedButton.icon(
-                        onPressed: picksinglefile,
+                        onPressed: _uploadArchive,
                         style: const ButtonStyle(
                             backgroundColor:
                             MaterialStatePropertyAll(Color.fromARGB

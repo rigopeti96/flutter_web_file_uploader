@@ -14,5 +14,8 @@
   "fileNotFound": "Fájl nem található vagy nincs feltöltve",
   "nameLabel": "Fájlnév",
   "sizeLabel": "Fájlméret",
-  "extensionLabel": "Kiterjesztés"
+  "extensionLabel": "Kiterjesztés",
+  "uploadSuccessful": "Sikeres fájlfeltöltés!",
+  "uploadFailed": "Fájl feltöltése sikertelen!",
+  "uploadResult": "Fájl feltöltés befejeződött"
 }
