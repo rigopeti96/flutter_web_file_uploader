@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class LoginDataResponse {
   final String accessToken;
   //final String id;

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../main.dart';
 import 'loginresponse.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  LoginPageState createState() => LoginPageState();
+}
+
+class LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -30,8 +36,7 @@ class LoginPage extends StatelessWidget {
         LoginDataResponse loginResponse = LoginDataResponse.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
         jwtToken = loginResponse.accessToken;
         userName = loginResponse.employeename;
-        _showToast(context, l10n.loginSuccessMessage, l10n.okButton);
-        Navigator.of(context).pop();
+        _navigateToUploaderScreen();
         return loginResponse;
       } else {
         // If the server did not return a 201 CREATED response,
@@ -45,7 +50,7 @@ class LoginPage extends StatelessWidget {
     }
   }
 
-  void _navigateToLoginScreen() {
+  void _navigateToUploaderScreen() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LoginPage(),
@@ -68,44 +73,35 @@ class LoginPage extends StatelessWidget {
     final L10n? l10n = L10n.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(l10n!.loginTitle)),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/splash.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  hintText: l10n.userNameTag,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                hintText: l10n.userNameTag,
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                  hintText: l10n.passwordTag,
                   filled: true,
-                  fillColor: Colors.white,
-                ),
+                  fillColor: Colors.white
               ),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                    hintText: l10n.passwordTag,
-                    filled: true,
-                    fillColor: Colors.white
-                ),
-              ),
-              ElevatedButton(
-                child: Text(l10n.loginButton),
-                onPressed: (){
-                  login(context, l10n);
-                  //Navigator.of(context).pop();
-                },
-              ),
-            ],
-          ),
+            ),
+            ElevatedButton(
+              child: Text(l10n.loginButton),
+              onPressed: (){
+                login(context, l10n);
+              },
+            ),
+          ],
         ),
       ),
     );
