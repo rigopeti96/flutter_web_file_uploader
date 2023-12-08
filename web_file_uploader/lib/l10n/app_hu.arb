@@ -5,7 +5,6 @@
   "userNameTag": "Felhasználónév",
   "passwordTag": "Jelszó",
   "createUserBack": "Vissza",
-  "connectionErrorMessage": "Hálózati hiba, hibaüzenet a logban!",
   "loginSuccessMessage": "Bejelentkezés sikeres!",
   "okButton": "OK",
   "generalErrorMessage": "Hiba!",
@@ -18,5 +17,6 @@
   "uploadSuccessful": "Sikeres fájlfeltöltés!",
   "uploadFailed": "Fájl feltöltése sikertelen!",
   "uploadResult": "Fájl feltöltés befejeződött",
+  "connectionError": "Hálózati hiba, kérem vegye fel a kapcsolatot egy adminisztrátorral vagy elleőrizze a log üzeneteket!",
   "logout": "Kijelentkezés"
 }

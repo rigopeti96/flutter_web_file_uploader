@@ -30,10 +30,6 @@
     "description": "Dropdown list value",
     "context": "CreateAlertPage"
   },
-  "connectionErrorMessage": "Connection error, please check logs!",
-  "@connectionErrorMessage": {
-    "description": "Connection error message"
-  },
   "loginSuccessMessage": "Login was successful",
   "@loginSuccessMessage": {
     "description": "Toast message to show the success of login",
@@ -91,6 +87,11 @@
   },
   "uploadResult": "File upload has ended",
   "@uploadResult": {
+    "description": "Alert dialog title",
+    "context": "FileUploader"
+  },
+  "connectionError": "Network error, please contact to an administrator or check the log",
+  "@connectionError": {
     "description": "Alert dialog title",
     "context": "FileUploader"
   },

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:html';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +25,7 @@ class UploaderPageState extends State<UploaderPage> {
   PlatformFile? file;
   String? size;
 
-  Future<void> _uploadArchive() async {
+  /*Future<void> _uploadArchive() async {
     final completer = Completer<List<int>>();
     final reader = FileReader();
 
@@ -40,7 +41,7 @@ class UploaderPageState extends State<UploaderPage> {
         "Authorization": "Bearer $jwtToken",
         "Content-Type": "multipart/form-data",
         "Content-Length": bytesData.length.toString(),
-        "Accept": "*/*",
+        "Accept": "* / *",
       };
       request.headers.addAll(headers);
       request.files.add(http.MultipartFile.fromBytes(
@@ -58,11 +59,47 @@ class UploaderPageState extends State<UploaderPage> {
     }
 
     _showMyDialog(false);
+  }*/
+
+  Future<void> _uploadArchive() async{
+    final L10n l10n = L10n.of(context)!;
+    var uri = Uri.parse("http://192.168.0.171:8080/api/gtfshandler/uploadArchive");
+    if(file == null){
+
+    } else {
+      Uint8List path = file!.bytes!;
+      var request = http.MultipartRequest('POST', uri);
+      Map<String, String> headers = {
+        "Authorization": "Bearer $jwtToken",
+        "Content-Type": "multipart/form-data",
+        "Accept": "application/json"
+      };
+      //add headers
+      request.headers.addAll(headers);
+      var fileToUpload= http.MultipartFile.fromBytes(
+          'uploadedZip',
+          path
+      );
+
+      request.files.add(fileToUpload);
+
+      try{
+        await request.send().then((streamedResponse) async {
+          if(streamedResponse.statusCode == 200){
+            _showMyDialog(l10n.uploadSuccessful);
+          } else {
+            _showMyDialog(l10n.uploadFailed);
+          }
+        });
+      } on Exception catch(e){
+        _showMyDialog(l10n.connectionError);
+      }
+    }
   }
 
 
 
-  Future<void> _showMyDialog(bool isSuccessful) async {
+  Future<void> _showMyDialog(String message) async {
     final L10n l10n = L10n.of(context)!;
     return showDialog<void>(
       context: context,
@@ -73,7 +110,8 @@ class UploaderPageState extends State<UploaderPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text(isSuccessful ? l10n.uploadSuccessful : l10n.uploadFailed),
+                //Text(isSuccessful ? l10n.uploadSuccessful : l10n.uploadFailed),
+                Text(message),
               ],
             ),
           ),

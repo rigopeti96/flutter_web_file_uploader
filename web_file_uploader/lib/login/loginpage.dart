@@ -46,9 +46,38 @@ class LoginPageState extends State<LoginPage> {
       }
     } on Exception catch (e) {
       print(e);
-      _showToast(context, l10n.connectionErrorMessage, l10n.okButton);
+      //_showToast(context, l10n.connectionErrorMessage, l10n.okButton);
+      _showMyDialog(l10n.connectionError);
       throw Exception('Failed to connect.');
     }
+  }
+
+  Future<void> _showMyDialog(String message) async {
+    final L10n l10n = L10n.of(context)!;
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(l10n.generalErrorMessage),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(l10n.okButton),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _navigateToUploaderScreen() {
@@ -99,8 +128,8 @@ class LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text(l10n.loginButton),
               onPressed: (){
-                login(context, l10n);
-                //_navigateToUploaderScreen();
+                //login(context, l10n);
+                _navigateToUploaderScreen();
               },
             ),
           ],
