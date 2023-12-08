@@ -65,7 +65,7 @@ class UploaderPageState extends State<UploaderPage> {
     final L10n l10n = L10n.of(context)!;
     var uri = Uri.parse("http://192.168.0.171:8080/api/gtfshandler/uploadArchive");
     if(file == null){
-
+      _showMyDialog(l10n.fileNotFoundError);
     } else {
       Uint8List path = file!.bytes!;
       var request = http.MultipartRequest('POST', uri);
@@ -203,6 +203,9 @@ class UploaderPageState extends State<UploaderPage> {
                           style: const TextStyle(fontSize: 25),
                         )
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     ElevatedButton.icon(
                         onPressed: _uploadArchive,
                         style: const ButtonStyle(
@@ -216,6 +219,9 @@ class UploaderPageState extends State<UploaderPage> {
                           l10n.uploadFileLabel,
                           style: const TextStyle(fontSize: 25),
                         )
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     ElevatedButton.icon(
                         onPressed: _logout,

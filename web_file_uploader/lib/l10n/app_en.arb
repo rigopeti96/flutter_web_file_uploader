@@ -95,6 +95,11 @@
     "description": "Alert dialog title",
     "context": "FileUploader"
   },
+  "fileNotFoundError": "Upload a file first",
+  "@fileNotFoundError": {
+    "description": "Alert dialog title",
+    "context": "FileUploader"
+  },
   "logout": "Logout",
   "@logout": {
     "description": "Logout button label",

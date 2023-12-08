@@ -17,6 +17,7 @@
   "uploadSuccessful": "Sikeres fájlfeltöltés!",
   "uploadFailed": "Fájl feltöltése sikertelen!",
   "uploadResult": "Fájl feltöltés befejeződött",
-  "connectionError": "Hálózati hiba, kérem vegye fel a kapcsolatot egy adminisztrátorral vagy elleőrizze a log üzeneteket!",
+  "connectionError": "Hálózati hiba, kérem vegye fel a kapcsolatot egy adminisztrátorral vagy ellenőrizze a log üzeneteket!",
+  "fileNotFoundError": "Feltöltéshez először válasszon egy fájlt!",
   "logout": "Kijelentkezés"
 }
