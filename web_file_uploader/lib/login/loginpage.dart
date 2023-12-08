@@ -18,7 +18,7 @@ class LoginPageState extends State<LoginPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  /*Future<LoginDataResponse> login(BuildContext context, L10n l10n) async{
+  Future<LoginDataResponse> login(BuildContext context, L10n l10n) async{
     try{
       final response = await http.post(
         Uri.parse('http://192.168.0.171:8080/api/auth/signin'),
@@ -49,7 +49,7 @@ class LoginPageState extends State<LoginPage> {
       _showToast(context, l10n.connectionErrorMessage, l10n.okButton);
       throw Exception('Failed to connect.');
     }
-  }*/
+  }
 
   void _navigateToUploaderScreen() {
     Navigator.of(context).push(
@@ -99,8 +99,8 @@ class LoginPageState extends State<LoginPage> {
             ElevatedButton(
               child: Text(l10n.loginButton),
               onPressed: (){
-                //login(context, l10n);
-                _navigateToUploaderScreen();
+                login(context, l10n);
+                //_navigateToUploaderScreen();
               },
             ),
           ],

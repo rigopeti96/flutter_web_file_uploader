@@ -4,6 +4,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:file_picker/file_picker.dart';
@@ -27,28 +28,39 @@ class UploaderPageState extends State<UploaderPage> {
     final completer = Completer<List<int>>();
     final reader = FileReader();
 
-    reader.onLoad.listen((event) {
-      final bytesData = reader.result as List<int>;
-      completer.complete(bytesData);
-    });
+    try{
+      reader.onLoad.listen((event) {
+        final bytesData = reader.result as List<int>;
+        completer.complete(bytesData);
+      });
 
-    final bytesData = await completer.future;
-    final request = http.MultipartRequest("POST", Uri.parse('http://192.168.0.171:8080/api/gtfshandler/uploadArchive'));
-    final headers = {
-      "Authorization": "Bearer $jwtToken",
-      "Content-Type": "multipart/form-data",
-      "Content-Length": bytesData.length.toString(),
-      "Accept": "*/*",
-    };
-    request.headers.addAll(headers);
-    request.files.add(http.MultipartFile.fromBytes(
-      'files',
-      bytesData,
-      filename: file!.name,
-    ));
-    final response = await request.send();
-    _showMyDialog(response.statusCode == 200);
+      final bytesData = await completer.future;
+      final request = http.MultipartRequest("POST", Uri.parse('http://192.168.0.171:8080/api/gtfshandler/uploadArchive'));
+      final headers = {
+        "Authorization": "Bearer $jwtToken",
+        "Content-Type": "multipart/form-data",
+        "Content-Length": bytesData.length.toString(),
+        "Accept": "*/*",
+      };
+      request.headers.addAll(headers);
+      request.files.add(http.MultipartFile.fromBytes(
+        'uploadedZip',
+        bytesData,
+        filename: file!.name,
+      ));
+      final response = await request.send();
+
+      _showMyDialog(response.statusCode == 200);
+    } on Exception catch (e){
+      _showMyDialog(false);
+      print(e);
+      throw Exception(e);
+    }
+
+    _showMyDialog(false);
   }
+
+
 
   Future<void> _showMyDialog(bool isSuccessful) async {
     final L10n l10n = L10n.of(context)!;
